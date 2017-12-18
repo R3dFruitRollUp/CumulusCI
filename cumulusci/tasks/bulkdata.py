@@ -388,6 +388,8 @@ class QueryData(BaseSalesforceApiTask):
             'fields': ', '.join(fields),
             'sf_object': sf_object,
         })
+        if 'record_type' in mapping:
+            soql += " WHERE RecordType.DeveloperName ='{}'".format(mapping['record_type'])
         return soql
 
     def _run_query(self, soql, mapping):
